@@ -4,13 +4,8 @@
 
 // Select UI elements and assign to variable for later use
 let inputBox = document.querySelector('.inputBox');
-let todoList = document.querySelectorAll('li');
 let btnAdd = document.querySelector('.btnAdd');
-let ul = document.querySelector('ul');
 let liList = document.querySelectorAll('li');
-
-console.log(ul);
-console.log(todoList);
 
 // Check the input field for user input data
 function checkInput() {
@@ -39,6 +34,7 @@ btnAdd.addEventListener('click', function () {
 
 // Create element and add todo item to the list
 function addItems() {
+  let ul = document.querySelector('ul');
   let li = document.createElement('li');
   li.appendChild(document.createTextNode(inputBox.value));
   ul.appendChild(li);
