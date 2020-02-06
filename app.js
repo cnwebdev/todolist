@@ -6,30 +6,47 @@
 let inputBox = document.querySelector('.inputBox');
 let btnAdd = document.querySelector('.btnAdd');
 let liList = document.querySelectorAll('li');
-
-// Setup input field event listener
-inputBox.addEventListener('keyup', addItems);
+console.log(btnAdd);
 
 // Setup event listener for add button
-btnAdd.addEventListener('click', addItems);
+btnAdd.addEventListener('click', addItemAfterClick);
+
+// Setup input field event listener
+inputBox.addEventListener('keypress', addItemAfterKeypress);
+
+
+// Function run when press enter key
+function addItemAfterKeypress(event) {
+  console.log(event);
+  if (checkInput() > 3 && event.keyCode === 13) {
+    addItems();
+  }
+};
+
+// Function run when add button is clicked
+function addItemAfterClick() {
+  console.log('Click');
+  if (inputBox.value !== '') {
+    addItems();
+  } else {
+    alert('Please enter something');
+  }
+};
 
 // Check inputbox for user input data
 function checkInput() {
-  if (inputBox.value.length >= 3 && event.keyCode === 13) {
-    return true;
-  }
+  return inputBox.value.length;
 };
 
 // Create element and add todo item to the list
 function addItems() {
-  if (checkInput()) {
-    let ul = document.querySelector('ul');
-    let li = document.createElement('li');
-    li.appendChild(document.createTextNode(inputBox.value));
-    ul.appendChild(li);
-    createDeleteButton();
-    inputBox.value = '';
-  }
+  console.log('it works!')
+  let ul = document.querySelector('ul');
+  let li = document.createElement('li');
+  li.appendChild(document.createTextNode(inputBox.value));
+  ul.appendChild(li);
+  createDeleteButton();
+  inputBox.value = '';
 };
 
 // Create X button and append it to each list item
