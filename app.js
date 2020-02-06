@@ -77,11 +77,4 @@ todoItem.addEventListener('click', function (event) {
   }
 });
 
-// Delete todo item when click on delete button "x"
-let delBtn = document.querySelectorAll('.delete');
-for (let i = 0; i < delBtn.length; i++) {
-  delBtn[i].onclick = function () {
-    let temp = this.parentElement;
-    temp.style.display = 'none';
-  }
-};
+
