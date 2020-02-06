@@ -4,36 +4,13 @@
 
 // Select UI elements and assign to variable for later use
 let inputBox = document.querySelector('.inputBox');
-let todoList = document.querySelector('li');
+let todoList = document.querySelectorAll('li');
 let btnAdd = document.querySelector('.btnAdd');
 let ul = document.querySelector('ul');
+let liList = document.querySelectorAll('li');
+
 console.log(ul);
-console.log(btnAdd);
-
-function createList() {
-
-}
-
-// Create element and add todo item to the list
-function addItems() {
-  let li = document.createElement('li');
-  li.appendChild(document.createTextNode(inputBox.value));
-  ul.appendChild(li);
-  inputBox.value = '';
-
-  let delBtn = document.createElement("span");
-  var label = document.createTextNode("\u00D7");
-  delBtn.className = "delete";
-  delBtn.appendChild(label);
-  li.appendChild(delBtn);
-
-  for (i = 0; i < close.length; i++) {
-    del[i].onclick = function () {
-      let div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
+console.log(todoList);
 
 // Check the input field for user input data
 function checkInput() {
@@ -60,24 +37,51 @@ btnAdd.addEventListener('click', function () {
   }
 });
 
-// Creat X button and append it to each list item
-const liList = document.querySelectorAll('li');
-for (let i = 0; i < liList.length; i++) {
-  let delBtn = document.createElement('span');
-  let label = document.createTextNode('\u00D7');
-  delBtn.className = 'delete';
-  delBtn.appendChild(label);
-  liList[i].appendChild(delBtn);
+// Create element and add todo item to the list
+function addItems() {
+  let li = document.createElement('li');
+  li.appendChild(document.createTextNode(inputBox.value));
+  ul.appendChild(li);
+  inputBox.value = '';
+
+  createDeleteButton();
+  // updateList();
 }
 
-// Click of the delele "x" button to hide the todo item
-let del = document.querySelectorAll('.delete');
-console.log(del);
+// Create X button and append it to each list item
+function createDeleteButton() {
+  let liList = document.querySelectorAll('li');
+  for (let i = 0; i < liList.length; i++) {
+    let del = document.createElement('span');
+    let label = document.createTextNode('x');
+    del.className = 'delete';
+    del.appendChild(label);
+    liList[i].appendChild(del);
 
-for (i = 0; i < del.length; i++) {
-  del[i].addEventListener('click', function () {
-    let div = this.parentElement;
-    div.style.display = 'none';
-  })
-}
+    let delBtn = document.querySelectorAll('.delete');
+    for (let i = 0; i < delBtn.length; i++) {
+      delBtn[i].onclick = function () {
+        let temp = this.parentElement;
+        temp.style.display = 'none';
+      }
+    }
+  }
+};
+createDeleteButton();
 
+// Add a checked mark when click on todo list
+let todoItem = document.querySelector('ul');
+todoItem.addEventListener('click', function (event) {
+  if (event.target.tagName === 'LI') {
+    event.target.classList.toggle('checked');
+  }
+});
+
+// Delete todo item when click on delete button "x"
+let delBtn = document.querySelectorAll('.delete');
+for (let i = 0; i < delBtn.length; i++) {
+  delBtn[i].onclick = function () {
+    let temp = this.parentElement;
+    temp.style.display = 'none';
+  }
+};
