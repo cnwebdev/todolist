@@ -18,7 +18,7 @@ inputBox.addEventListener('keypress', addItemAfterKeypress);
 // Function run when press enter key
 function addItemAfterKeypress(event) {
   console.log(event);
-  if (checkInput() > 3 && event.keyCode === 13) {
+  if (inputLength() >= 3 && event.keyCode === 13) {
     addItems();
   }
 };
@@ -26,15 +26,15 @@ function addItemAfterKeypress(event) {
 // Function run when add button is clicked
 function addItemAfterClick() {
   console.log('Click');
-  if (inputBox.value !== '') {
+  if (inputLength() >= 3) {
     addItems();
   } else {
-    alert('Please enter something');
+    alert('Please enter todo item\'s name with 3 letters or more!');
   }
 };
 
 // Check inputbox for user input data
-function checkInput() {
+function inputLength() {
   return inputBox.value.length;
 };
 
