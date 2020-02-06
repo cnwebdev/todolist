@@ -17,6 +17,9 @@ body {
   width: 70%;
   /* text-align: center; */
 }
+.main {
+  box-shadow: .1rem .2rem 1rem #0000003b;
+}
 
 .header {
   margin-top: 3rem;
